@@ -6,7 +6,7 @@ const post = {
                 resolve,
                 2000,
                 comments
-            )
+            );
         });
     },
 };
@@ -18,7 +18,7 @@ const comments = {
                 resolve,
                 3000,
                 `1st comment of Post No. ${this.id}`
-            )
+            );
         });
     },
 };
@@ -38,6 +38,7 @@ function co(generator) {
             processNext.call(this, response);
         });
 }
+
 function processNext(response) {
     // Reference on Generator as Observer:
     // https://exploringjs.com/es6/ch_generators.html#sec_generators-as-observers
@@ -60,6 +61,7 @@ function processNext(response) {
         }
     }
 }
+
 function findByID(id) {
     post.id = id;
     return new Promise(resolve => {
@@ -67,7 +69,7 @@ function findByID(id) {
     });
 }
 
-co(function *() {
+co(function* () {
     console.log('Start Generator');
     let post = yield findByID(1);
     let comments = yield post.getComments();
